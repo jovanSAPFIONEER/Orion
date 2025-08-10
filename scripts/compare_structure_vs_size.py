@@ -50,6 +50,9 @@ def load_size(size_csv: str) -> pd.DataFrame:
 
 
 def main():
+    # Ensure a clean plotting state when called repeatedly (e.g., from REPL)
+    plt.close('all')
+    plt.style.use('default')
     struct_csv = os.path.join('runs','rewire_sweep_dense','rewire_sweep_thresholds_current.csv')
     size_csv = os.path.join('runs','size_thresholds','size_thresholds.csv')
     out_dir = os.path.join('runs','size_thresholds')
@@ -77,7 +80,7 @@ def main():
     tidy.to_csv(tidy_csv, index=False)
 
     # Plot: two panels
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.5))
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.5), constrained_layout=True)
 
     # Left: thresholds vs rewire p (filtered)
     ax = axes[0]
@@ -101,10 +104,9 @@ def main():
     ax.set_ylabel('Threshold (SOA)')
     ax.set_title('Size thresholds (0.5 crossing)')
 
-    plt.tight_layout()
     out_png = os.path.join(out_dir, 'structure_vs_size_thresholds.png')
     plt.savefig(out_png, dpi=150)
-    plt.close()
+    plt.close(fig)
 
     # Print concise headline to stdout
     if best_row is not None:

@@ -1,0 +1,2 @@
+N,Threshold50_linear,Threshold50_logistic,Threshold50_lo,Threshold50_hi,LogisticSlope,Pattern,Modules,InterFrac,GW_tau,GW_theta,Sync_mean
+128,1.7058823529411766,2.0168067226890756,1.3426470588235293,2.25,4.8000006,small_world,4,0.05,0.85,0.3,0.6176046176046176

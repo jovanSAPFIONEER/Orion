@@ -1,0 +1,10 @@
+Bootstrap spline minimum for Threshold vs RewireP
+============================================================
+B = 2000  smoothing=0.02  grid=5001  seed=1234
+Filtered exact per-seed thresholds equal to: [48.0, 64.0]
+Rewire levels: 7  Seeds per level (min/median/max): 8/8/8
+Point estimate:
+  rewire_p* ~ 0.400  threshold* ~ 2.000
+95% CI (bootstrap percentiles):
+  rewire_p*: [0.339, 0.400]
+  threshold*: [-0.384, 2.122]

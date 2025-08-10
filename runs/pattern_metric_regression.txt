@@ -1,0 +1,72 @@
+Masking Threshold Metric Regression Report
+==================================================
+Rows: 20  Patterns: 4  Seeds: 5  Cluster: Seed
+Active Predictors: CommMean, Fiedler, LongRangeFrac, WeightedEff
+
+OLS Summary (cluster-robust if applicable):
+                             OLS Regression Results                             
+================================================================================
+Dep. Variable:     Threshold50_logistic   R-squared:                       0.997
+Model:                              OLS   Adj. R-squared:                  0.996
+Method:                   Least Squares   F-statistic:                     6529.
+Date:                  Fri, 08 Aug 2025   Prob (F-statistic):           7.03e-08
+Time:                          23:03:19   Log-Likelihood:                 59.430
+No. Observations:                    20   AIC:                            -108.9
+Df Residuals:                        15   BIC:                            -103.9
+Df Model:                             4                                         
+Covariance Type:                cluster                                         
+=================================================================================
+                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+const             2.3361      0.003    774.544      0.000       2.330       2.342
+CommMean          0.8677      0.028     31.179      0.000       0.813       0.922
+Fiedler          -1.3671      0.063    -21.670      0.000      -1.491      -1.243
+LongRangeFrac     0.6156      0.040     15.559      0.000       0.538       0.693
+WeightedEff       0.0121      0.006      2.066      0.039       0.001       0.024
+==============================================================================
+Omnibus:                        9.032   Durbin-Watson:                   1.623
+Prob(Omnibus):                  0.011   Jarque-Bera (JB):                6.349
+Skew:                           1.221   Prob(JB):                       0.0418
+Kurtosis:                       4.288   Cond. No.                         67.1
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)
+
+Standardized Coefficients:
+    Predictor  Beta_std       SE          t             p
+     CommMean  0.867731 0.027831  31.178688 2.072575e-213
+      Fiedler -1.367109 0.063089 -21.669701 3.963227e-104
+LongRangeFrac  0.615585 0.039564  15.559108  1.380088e-54
+  WeightedEff  0.012133 0.005872   2.066167  3.881274e-02
+
+VIF:
+    Predictor        VIF
+     CommMean  44.448770
+      Fiedler 896.905657
+LongRangeFrac 601.596809
+  WeightedEff  15.184124
+
+Predictor-Threshold Partial Correlations (controlling others):
+    Predictor  PartialR
+     CommMean  0.995496
+      Fiedler -0.965055
+LongRangeFrac  0.896612
+  WeightedEff  0.243622
+
+Predictor-Predictor Partial Correlations (controlling remaining predictors):
+            A             B  PartialR_ctrl_others
+     CommMean       Fiedler              0.880866
+     CommMean LongRangeFrac             -0.815772
+     CommMean   WeightedEff              0.784089
+      Fiedler LongRangeFrac              0.991682
+      Fiedler   WeightedEff             -0.957993
+LongRangeFrac   WeightedEff              0.966298
+
+Correlation Matrix:
+                      CommMean   Fiedler  LongRangeFrac  WeightedEff  Threshold50_logistic
+CommMean              1.000000  0.965760       0.935655    -0.078178              0.532828
+Fiedler               0.965760  1.000000       0.985440    -0.073409              0.333475
+LongRangeFrac         0.935655  0.985440       1.000000     0.081964              0.353622
+WeightedEff          -0.078178 -0.073409       0.081964     1.000000              0.413824
+Threshold50_logistic  0.532828  0.333475       0.353622     0.413824              1.000000

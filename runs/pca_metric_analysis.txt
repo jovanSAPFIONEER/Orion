@@ -1,0 +1,102 @@
+PCA Structural Metric Analysis
+==================================================
+Rows (rewire levels): 8
+Metrics used: CommMean, Fiedler, LongRangeFrac, WeightedEff
+
+Explained variance ratios:
+ PC1: var=4.3295 ratio=0.9471
+ PC2: var=0.2370 ratio=0.0518
+ PC3: var=0.0041 ratio=0.0009
+ PC4: var=0.0009 ratio=0.0002
+
+Loadings (columns=PCs):
+                    PC1       PC2       PC3       PC4
+CommMean       0.470586 -0.881329 -0.041649  0.008565
+Fiedler        0.510070  0.248597  0.615229  0.547285
+LongRangeFrac  0.510119  0.255845  0.185331 -0.799984
+WeightedEff   -0.508091 -0.309842  0.765121 -0.245827
+
+Linear PC1 model:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.024
+Model:                            OLS   Adj. R-squared:                 -0.139
+Method:                 Least Squares   F-statistic:                    0.1445
+Date:                Sat, 09 Aug 2025   Prob (F-statistic):              0.717
+Time:                        14:44:45   Log-Likelihood:                -15.397
+No. Observations:                   8   AIC:                             34.79
+Df Residuals:                       6   BIC:                             34.95
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.1437      0.677      4.644      0.004       1.487       4.800
+PC1           -0.1322      0.348     -0.380      0.717      -0.983       0.719
+==============================================================================
+Omnibus:                       10.338   Durbin-Watson:                   2.585
+Prob(Omnibus):                  0.006   Jarque-Bera (JB):                3.383
+Skew:                           1.452   Prob(JB):                        0.184
+Kurtosis:                       4.310   Cond. No.                         1.95
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Quadratic PC1 model:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.132
+Model:                            OLS   Adj. R-squared:                 -0.215
+Method:                 Least Squares   F-statistic:                    0.3797
+Date:                Sat, 09 Aug 2025   Prob (F-statistic):              0.702
+Time:                        14:44:45   Log-Likelihood:                -14.926
+No. Observations:                   8   AIC:                             35.85
+Df Residuals:                       5   BIC:                             36.09
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.8443      1.129      3.404      0.019       0.941       6.747
+PC1            0.0145      0.404      0.036      0.973      -1.025       1.054
+PC1_sq        -0.1849      0.234     -0.790      0.465      -0.787       0.417
+==============================================================================
+Omnibus:                        5.295   Durbin-Watson:                   2.934
+Prob(Omnibus):                  0.071   Jarque-Bera (JB):                1.596
+Skew:                           1.072   Prob(JB):                        0.450
+Kurtosis:                       3.436   Cond. No.                         8.52
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+PC1+PC2 model:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.177
+Model:                            OLS   Adj. R-squared:                 -0.152
+Method:                 Least Squares   F-statistic:                    0.5392
+Date:                Sat, 09 Aug 2025   Prob (F-statistic):              0.614
+Time:                        14:44:45   Log-Likelihood:                -14.711
+No. Observations:                   8   AIC:                             35.42
+Df Residuals:                       5   BIC:                             35.66
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.1437      0.681      4.619      0.006       1.394       4.893
+PC1           -0.1322      0.350     -0.378      0.721      -1.031       0.767
+PC2            1.4454      1.495      0.967      0.378      -2.396       5.287
+==============================================================================
+Omnibus:                       13.132   Durbin-Watson:                   2.536
+Prob(Omnibus):                  0.001   Jarque-Bera (JB):                4.604
+Skew:                           1.637   Prob(JB):                        0.100
+Kurtosis:                       4.759   Cond. No.                         4.27
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Model AIC: linear=34.79 quad=35.85 PC1+PC2=35.42

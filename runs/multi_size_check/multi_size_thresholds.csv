@@ -1,0 +1,3 @@
+N,Threshold50_linear,Threshold50_logistic,Threshold50_lo,Threshold50_hi,LogisticSlope
+32,8.0,1.0,1.0,2.2795226130653257,2.333333666666667
+64,,1.0,1.0,2.003391959798992,2.333333666666667

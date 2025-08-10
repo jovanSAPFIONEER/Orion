@@ -118,6 +118,31 @@ python scripts\eval_cai.py --cai_dir .\runs\mini\cai --outfile .\runs\mini\cai_e
 
 See `documentation/MEASURING_CONSCIOUS_ACCESS.md` for the validation plan and success criteria.
 
+### CAI evaluation (larger run snapshot)
+
+Latest pinned metrics from a moderate run (n ≈ 1200 trials in masking):
+
+- Simple CAI: AUC ≈ 0.491, ECE ≈ 0.220 (min–max scaled proxy)
+- Cross‑validated + isotonic calibrated: AUC ≈ 0.497, ECE ≈ 0.012
+
+Artifacts:
+
+- data/cai_eval_full_01.json (simple)
+- data/cai_cv_eval_full_01.json (CV‑calibrated)
+
+Reproduce on Windows PowerShell:
+
+```powershell
+# Generate CAI-ready trials (moderate size) and PDF report
+python overnight_full_run.py --out .\runs\cai_full_01 --n_mask 200 --n_blink 120 --n_cb 96 --n_dual 120 --boots 1200 --dump_cai_json --cai_dir .\runs\cai_full_01\cai
+
+# Evaluate simple CAI
+python scripts\eval_cai.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai_full_01\cai_eval.json
+
+# Evaluate cross‑validated, calibrated CAI
+python scripts\eval_cai_cv.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai_full_01\cai_cv_eval.json
+```
+
 ## Running tests
 
 All tests use pytest. Below are Windows PowerShell examples.

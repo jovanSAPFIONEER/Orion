@@ -64,8 +64,8 @@ I wondered if similar threshold detection approaches might apply to studying con
 
 ### Installation
 ```bash
-git clone https://github.com/[username]/ai-consciousness-thresholds
-cd ai-consciousness-thresholds
+git clone https://github.com/jovanSAPFIONEER/Orion.git
+cd Orion
 pip install -r requirements.txt
 ```
 

@@ -9,6 +9,18 @@ I'm a software developer at SAP Fioneer working on banking products. In my spare
 
 This repository contains a Global Workspace model that simulates classic consciousness experiments. The goal is to see if network connectivity shows sharp threshold effects that might relate to awareness transitions.
 
+## Key findings (current)
+
+- Communication structure modulates masking thresholds much more than network size. A small‑world topology shows a clear optimum around rewiring p ≈ 0.40 with the lowest SOA threshold.
+- Size scaling (32–512 nodes) changes thresholds modestly compared to the structural effect.
+- Reproduction code and pinned artifacts are included.
+
+Artifacts:
+- Structure vs size summary (image): figures/structure_vs_size_thresholds.png
+- Structure vs size summary (CSV): data/structure_vs_size_thresholds.csv
+- Additional figures: figures/threshold_comparison.png and figures/scaling_analysis_comprehensive.png
+- Narrative: executive_summary.md and SCALING_ANALYSIS.md
+
 ### What I Found
 - Statistical evidence for threshold effects (p < 0.001) across multiple paradigms
 - Sharp transitions around specific connectivity values

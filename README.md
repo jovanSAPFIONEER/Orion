@@ -16,6 +16,8 @@ This repository contains a Global Workspace model that simulates classic conscio
 - Size scaling (32–512 nodes) changes thresholds modestly compared to the structural effect.
 - Reproduction code and pinned artifacts are included.
 
+<img src="figures/structure_vs_size_thresholds.png" alt="Structure vs size thresholds" />
+
 Artifacts:
 - Structure vs size summary (image): figures/structure_vs_size_thresholds.png
 - Structure vs size summary (CSV): data/structure_vs_size_thresholds.csv

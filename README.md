@@ -85,6 +85,46 @@ pip install -r requirements.txt
 ```bash
 # Quick validation (5 minutes)
 python overnight_full_run.py --out ./test_run --n_reps 10
+```
+
+## Running tests
+
+All tests use pytest. Below are Windows PowerShell examples.
+
+Set up once per machine:
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Run the full suite:
+```powershell
+pytest -q
+```
+
+Run specific test files:
+```powershell
+pytest -q test_noise_ceiling.py
+pytest -q test_noise_ceiling_scaling.py
+pytest -q test_node_scaling.py
+pytest -q test_enhanced_codebase.py
+```
+
+Filter by keyword (useful when iterating):
+```powershell
+pytest -q -k "noise_ceiling"
+```
+
+Run a single test function (node id):
+```powershell
+pytest -q test_node_scaling.py::test_scaling_behavior
+```
+
+Verbose output and short trace on failure:
+```powershell
+pytest -vv --maxfail=1 --tb=short
+```
 
 # Full experiment (2-3 hours)
 python overnight_full_run.py --out ./full_experiment --n_reps 200

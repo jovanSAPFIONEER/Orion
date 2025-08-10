@@ -23,6 +23,7 @@ Artifacts:
 - Structure vs size summary (CSV): data/structure_vs_size_thresholds.csv
 - Additional figures: figures/threshold_comparison.png and figures/scaling_analysis_comprehensive.png
 - Narrative: executive_summary.md and SCALING_ANALYSIS.md
+    - Measurement plan: documentation/MEASURING_CONSCIOUS_ACCESS.md
 
 ### Results at a glance
 

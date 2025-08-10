@@ -149,8 +149,7 @@ python scripts/make_figures.py --data_dir ./full_experiment --output_dir ./figur
 ### Reproduce main figure in one command (Windows PowerShell)
 ```powershell
 # Generate a small run and build all figures from it
-python overnight_full_run.py --out .\repro\main --n_reps 50 ; \
-python scripts\make_figures.py --data_dir .\repro\main --output_dir .\figures
+python overnight_full_run.py --out .\repro\main --n_reps 50 ; python scripts\make_figures.py --data_dir .\repro\main --output_dir .\figures
 ```
 
 ## 📈 What I've Tried to Do Right

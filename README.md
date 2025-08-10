@@ -143,6 +143,16 @@ python scripts\eval_cai.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai
 python scripts\eval_cai_cv.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai_full_01\cai_cv_eval.json
 ```
 
+Brief causal check:
+
+- Lesion (broadcast_gain=0): CV‑calibrated AUC ≈ 0.499, ECE ≈ 0.068 (data/cai_cv_eval_lesion_broadcast0.json)
+
+```powershell
+# Run lesion and evaluate
+python overnight_full_run.py --out .\runs\cai_lesion_broadcast0 --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300 --dump_cai_json --cai_dir .\runs\cai_lesion_broadcast0\cai --broadcast_gain 0.0
+python scripts\eval_cai_cv.py --cai_dir .\runs\cai_lesion_broadcast0\cai --outfile .\runs\cai_lesion_broadcast0\cai_cv_eval.json
+```
+
 ## Running tests
 
 All tests use pytest. Below are Windows PowerShell examples.

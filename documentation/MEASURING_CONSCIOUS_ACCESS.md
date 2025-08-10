@@ -63,6 +63,16 @@ Minimal implementation roadmap
 - Add matched-accuracy pipelines and confound regressions.
 - Add preregistration doc and a blinded evaluation script writing signed artifacts only.
 
+Quick usage (prototype CAI)
+- Save per-trial JSON with key "module_activations" (and optional "baseline_activations") shaped [T, M].
+- Compute CAI on a file or a folder of JSONs:
+
+```powershell
+python scripts\compute_cai.py --infile .\path\to\trial.json
+# or a directory of JSONs
+python scripts\compute_cai.py --infile .\path\to\trials_dir --outfile .\runs\cai_summary.json
+```
+
 Blinding & preregistration
 - Freeze analysis and endpoints before final runs; store SHA of code.
 - Use blinded file names; unblind after metrics are finalized.

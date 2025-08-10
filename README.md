@@ -106,6 +106,18 @@ pip install -r requirements.txt
 python overnight_full_run.py --out ./test_run --n_reps 10
 ```
 
+### CAI (Conscious Access Index) quickstart
+```powershell
+# 1) Dump CAI-ready JSONs during a small run
+python overnight_full_run.py --out .\runs\mini --n_reps 12 --dump_cai_json --cai_dir .\runs\mini\cai
+# 2) Compute CAI scores
+python scripts\compute_cai.py --infile .\runs\mini\cai --outfile .\runs\mini\cai_scores.json
+# 3) Evaluate predictive power (AUC/ECE)
+python scripts\eval_cai.py --cai_dir .\runs\mini\cai --outfile .\runs\mini\cai_eval.json
+```
+
+See `documentation/MEASURING_CONSCIOUS_ACCESS.md` for the validation plan and success criteria.
+
 ## Running tests
 
 All tests use pytest. Below are Windows PowerShell examples.

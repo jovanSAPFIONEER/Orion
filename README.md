@@ -32,6 +32,13 @@ Artifacts:
 | Size sweep (N = 32 → 512) | Thresholds change modestly vs. structure effect | Same pipeline; consistent ordering across sizes | figures/structure_vs_size_thresholds.png | data/structure_vs_size_thresholds.csv |
 | Net takeaway | Communication structure > size for lowering SOA threshold | Robust across runs; reproducible with provided scripts | figures/threshold_comparison.png | — |
 
+#### Headline numbers (95% CI)
+
+- Example size contrast at SOA=1 (from data/masking_curves_all_sizes.csv):
+    - 32 nodes: p=0.720 (18/25), 512 nodes: p=0.920 (23/25)
+    - Δ accuracy = +0.200, 95% CI [-0.107, 0.454], Cohen’s h = 0.542
+    - Note: CI crosses 0 due to small n; the structure effect is visualized in figures/threshold_comparison.png and figures/structure_vs_size_thresholds.png.
+
 ### What I Found
 - Statistical evidence for threshold effects (p < 0.001) across multiple paradigms
 - Sharp transitions around specific connectivity values

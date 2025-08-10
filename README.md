@@ -153,6 +153,21 @@ python overnight_full_run.py --out .\runs\cai_lesion_broadcast0 --n_mask 60 --n_
 python scripts\eval_cai_cv.py --cai_dir .\runs\cai_lesion_broadcast0\cai --outfile .\runs\cai_lesion_broadcast0\cai_cv_eval.json
 ```
 
+### Causal sweep: CAI vs. broadcast gain
+
+We provide a small utility to run a graded sweep over the global broadcast gain and evaluate CAI sensitivity. Current snapshot shows near-chance AUC across gains 0.0–0.3.
+
+Artifacts:
+- data/broadcast_gain_sweep.csv
+- figures/broadcast_gain_sweep.png
+
+Reproduce on Windows PowerShell:
+
+```powershell
+# Sweep broadcast_gain and plot AUC vs. gain
+python scripts\causal_broadcast_sweep.py --out .\runs\causal_bcast_sweep --gains 0.0,0.1,0.2,0.3 --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300
+```
+
 ## Running tests
 
 All tests use pytest. Below are Windows PowerShell examples.

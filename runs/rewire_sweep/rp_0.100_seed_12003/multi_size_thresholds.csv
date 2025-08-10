@@ -1,2 +1,0 @@
-N,Threshold50_linear,Threshold50_logistic,Threshold50_lo,Threshold50_hi,LogisticSlope,Pattern,Modules,InterFrac,GW_tau,GW_theta,DegreeFrac,RewireP,Sync_mean
-64,0.0,2.6218487394957983,0.6966101694915254,5.084745762711865,7.200000599999999,small_world,4,0.05,0.9,0.55,0.38,0.1,0.6111111111111113

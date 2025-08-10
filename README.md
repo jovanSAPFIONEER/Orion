@@ -24,6 +24,14 @@ Artifacts:
 - Additional figures: figures/threshold_comparison.png and figures/scaling_analysis_comprehensive.png
 - Narrative: executive_summary.md and SCALING_ANALYSIS.md
 
+### Results at a glance
+
+| Comparison | Headline | Evidence | Figure | Data |
+|---|---|---|---|---|
+| Structure sweep (small‑world p) | Minimum masking threshold at p ≈ 0.40 | Multiple seeds; ceiling points excluded; spline minimum stable | figures/structure_vs_size_thresholds.png | data/structure_vs_size_thresholds.csv |
+| Size sweep (N = 32 → 512) | Thresholds change modestly vs. structure effect | Same pipeline; consistent ordering across sizes | figures/structure_vs_size_thresholds.png | data/structure_vs_size_thresholds.csv |
+| Net takeaway | Communication structure > size for lowering SOA threshold | Robust across runs; reproducible with provided scripts | figures/threshold_comparison.png | — |
+
 ### What I Found
 - Statistical evidence for threshold effects (p < 0.001) across multiple paradigms
 - Sharp transitions around specific connectivity values
@@ -136,6 +144,13 @@ python overnight_full_run.py --out ./full_experiment --n_reps 200
 ### Generate Figures
 ```bash
 python scripts/make_figures.py --data_dir ./full_experiment --output_dir ./figures
+```
+
+### Reproduce main figure in one command (Windows PowerShell)
+```powershell
+# Generate a small run and build all figures from it
+python overnight_full_run.py --out .\repro\main --n_reps 50 ; \
+python scripts\make_figures.py --data_dir .\repro\main --output_dir .\figures
 ```
 
 ## 📈 What I've Tried to Do Right

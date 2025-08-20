@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
 
+> Replication and citation: One-command external kit at https://github.com/jovanSAPFIONEER/DISCOVER-5.0 — DOI: https://doi.org/10.5281/zenodo.16912657
+
 ## About This Project
 
 I'm a software developer at SAP Fioneer working on banking products. In my spare time, I've been exploring computational models of consciousness using techniques I'm familiar with from financial systems development.
@@ -12,25 +14,27 @@ This repository contains a Global Workspace model that simulates classic conscio
 
 ## Key findings (current)
 
-- Communication structure modulates masking thresholds much more than network size. A small‑world topology shows a clear optimum around rewiring p ≈ 0.40 with the lowest SOA threshold.
-- Size scaling (32–512 nodes) changes thresholds modestly compared to the structural effect.
+- Communication structure modulates masking thresholds more than network size (see figures/threshold_comparison.png).
+- Size scaling (32–512 nodes) changes thresholds modestly compared to the structural effect (see figures/scaling_analysis_comprehensive.png).
+- Causal broadcast sweep shows orientation-corrected sAUC windows modestly above chance at mid gains; stronger per‑SOA effects are visible (see figures/broadcast_gain_sweep_sAUC.png and figures/broadcast_gain_sAUC_bySOA.png).
 - Reproduction code and pinned artifacts are included.
 
-<img src="figures/structure_vs_size_thresholds.png" alt="Structure vs size thresholds" />
-
-Artifacts:
-- Structure vs size summary (image): figures/structure_vs_size_thresholds.png
-- Structure vs size summary (CSV): data/structure_vs_size_thresholds.csv
-- Additional figures: figures/threshold_comparison.png and figures/scaling_analysis_comprehensive.png
+Artifacts (selected):
+- Threshold comparison (image): figures/threshold_comparison.png
+- Scaling analysis (image): figures/scaling_analysis_comprehensive.png
+- Masking curves by size (CSV): data/masking_curves_all_sizes.csv
+- Best structural threshold summary (CSV): data/structure_best_threshold.csv
+- Broadcast sweep (sAUC, overall): data/broadcast_gain_sweep_sAUC.csv, figures/broadcast_gain_sweep_sAUC.png
+- Broadcast sweep (sAUC, by SOA): data/broadcast_gain_sweep_bySOA.csv, figures/broadcast_gain_sweep_sAUC_bySOA.png
 - Narrative: executive_summary.md and SCALING_ANALYSIS.md
-    - Measurement plan: documentation/MEASURING_CONSCIOUS_ACCESS.md
+    - Measurement plan: documentation/user_guide/README.md
 
 ### Results at a glance
 
 | Comparison | Headline | Evidence | Figure | Data |
 |---|---|---|---|---|
-| Structure sweep (small‑world p) | Minimum masking threshold at p ≈ 0.40 | Multiple seeds; ceiling points excluded; spline minimum stable | figures/structure_vs_size_thresholds.png | data/structure_vs_size_thresholds.csv |
-| Size sweep (N = 32 → 512) | Thresholds change modestly vs. structure effect | Same pipeline; consistent ordering across sizes | figures/structure_vs_size_thresholds.png | data/structure_vs_size_thresholds.csv |
+| Structure sweep (small‑world p) | Minimum masking threshold at p ≈ 0.40 | Multiple seeds; ceiling points excluded; spline minimum stable | figures/threshold_comparison.png | data/structure_best_threshold.csv |
+| Size sweep (N = 32 → 512) | Thresholds change modestly vs. structure effect | Same pipeline; consistent ordering across sizes | figures/scaling_analysis_comprehensive.png | data/masking_curves_all_sizes.csv |
 | Net takeaway | Communication structure > size for lowering SOA threshold | Robust across runs; reproducible with provided scripts | figures/threshold_comparison.png | — |
 
 #### Headline numbers (95% CI)
@@ -102,28 +106,31 @@ pip install -r requirements.txt
 
 ### Run Basic Experiment
 ```bash
-# Quick validation (5 minutes)
-python overnight_full_run.py --out ./test_run --n_reps 10
+# Quick validation (≈5 minutes)
+python overnight_full_run.py --out ./test_run --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300
 ```
 
 ### CAI (Conscious Access Index) quickstart
 ```powershell
 # 1) Dump CAI-ready JSONs during a small run
-python overnight_full_run.py --out .\runs\mini --n_reps 12 --dump_cai_json --cai_dir .\runs\mini\cai
+python overnight_full_run.py --out .\runs\mini --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300 --dump_cai_json --cai_dir .\runs\mini\cai
 # 2) Compute CAI scores
 python scripts\compute_cai.py --infile .\runs\mini\cai --outfile .\runs\mini\cai_scores.json
 # 3) Evaluate predictive power (AUC/ECE)
 python scripts\eval_cai.py --cai_dir .\runs\mini\cai --outfile .\runs\mini\cai_eval.json
+
+# Optional (recommended): Cross-validated, calibrated evaluation with sAUC/Brier and calibration export
+python scripts\eval_cai_cv.py --cai_dir .\runs\mini\cai --outfile .\runs\mini\cai_cv_eval.json --calib_json .\runs\mini\cai_calibration.json --save_probs .\runs\mini\cai_probs.csv
 ```
 
-See `documentation/MEASURING_CONSCIOUS_ACCESS.md` for the validation plan and success criteria.
+See `documentation/user_guide/README.md` for user-facing guidance.
 
 ### CAI evaluation (larger run snapshot)
 
 Latest pinned metrics from a moderate run (n ≈ 1200 trials in masking):
 
 - Simple CAI: AUC ≈ 0.491, ECE ≈ 0.220 (min–max scaled proxy)
-- Cross‑validated + isotonic calibrated: AUC ≈ 0.497, ECE ≈ 0.012
+- Cross‑validated + isotonic calibrated: AUC ≈ 0.497, sAUC (orientation‑corrected) ≈ 0.503, ECE ≈ 0.012; Brier score also reported
 
 Artifacts:
 
@@ -140,7 +147,7 @@ python overnight_full_run.py --out .\runs\cai_full_01 --n_mask 200 --n_blink 120
 python scripts\eval_cai.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai_full_01\cai_eval.json
 
 # Evaluate cross‑validated, calibrated CAI
-python scripts\eval_cai_cv.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai_full_01\cai_cv_eval.json
+python scripts\eval_cai_cv.py --cai_dir .\runs\cai_full_01\cai --outfile .\runs\cai_full_01\cai_cv_eval.json --calib_json .\runs\cai_full_01\cai_calibration.json --save_probs .\runs\cai_full_01\cai_probs.csv
 ```
 
 Brief causal check:
@@ -153,19 +160,21 @@ python overnight_full_run.py --out .\runs\cai_lesion_broadcast0 --n_mask 60 --n_
 python scripts\eval_cai_cv.py --cai_dir .\runs\cai_lesion_broadcast0\cai --outfile .\runs\cai_lesion_broadcast0\cai_cv_eval.json
 ```
 
-### Causal sweep: CAI vs. broadcast gain
+### Causal sweep (headline: sAUC with orientation correction)
 
-We provide a small utility to run a graded sweep over the global broadcast gain and evaluate CAI sensitivity. Current snapshot shows near-chance AUC across gains 0.0–0.3.
+Run a graded sweep over the global broadcast gain and evaluate CAI sensitivity with orientation‑corrected sAUC. Per‑SOA effects and bootstrap CIs are provided.
 
 Artifacts:
-- data/broadcast_gain_sweep.csv
-- figures/broadcast_gain_sweep.png
+- Overall sAUC with 95% CIs: data/broadcast_gain_sweep_sAUC.csv, figures/broadcast_gain_sweep_sAUC.png
+- By‑SOA sAUC: data/broadcast_gain_sweep_bySOA.csv, figures/broadcast_gain_sAUC_bySOA.png
 
 Reproduce on Windows PowerShell:
 
 ```powershell
-# Sweep broadcast_gain and plot AUC vs. gain
-python scripts\causal_broadcast_sweep.py --out .\runs\causal_bcast_sweep --gains 0.0,0.1,0.2,0.3 --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300
+# 1) Sweep broadcast_gain and generate CAI JSONs per gain
+python scripts\causal_broadcast_sweep.py --out .\runs\causal_bcast_sweep --gains 0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.8,1.0 --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300
+# 2) Analyze sweep with sAUC and by‑SOA outputs
+python scripts\analyze_broadcast_sweep.py --sweep_dir .\runs\causal_bcast_sweep --out .\runs\causal_bcast_sweep
 ```
 
 ## Running tests
@@ -208,7 +217,7 @@ pytest -vv --maxfail=1 --tb=short
 ```
 
 # Full experiment (2-3 hours)
-python overnight_full_run.py --out ./full_experiment --n_reps 200
+python overnight_full_run.py --out ./full_experiment --full
 ```
 
 ### Generate Figures
@@ -219,8 +228,23 @@ python scripts/make_figures.py --data_dir ./full_experiment --output_dir ./figur
 ### Reproduce main figure in one command (Windows PowerShell)
 ```powershell
 # Generate a small run and build all figures from it
-python overnight_full_run.py --out .\repro\main --n_reps 50 ; python scripts\make_figures.py --data_dir .\repro\main --output_dir .\figures
+python overnight_full_run.py --out .\repro\main --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300 ; python scripts\make_figures.py --data_dir .\repro\main --output_dir .\figures
 ```
+
+### Full causal rewire replication (Windows PowerShell)
+For a turnkey reproduction of the lesion→recovery result (SOA‑1), see `REPRODUCE.md` or run:
+
+```powershell
+# 1) Set up environment
+powershell -ExecutionPolicy Bypass -File .\scripts\reproduce_env.ps1
+# 2) Run end-to-end rewire pipeline
+powershell -ExecutionPolicy Bypass -File .\scripts\reproduce_rewire_pipeline.ps1
+```
+Key outputs will appear in `runs/rewire_cai_sweep_gain0p6_rep` (CSV + PNG/PDF).
+
+Alternatively, use the external one-command replication kit (cross-platform, with CI/release):
+- Repo: https://github.com/jovanSAPFIONEER/DISCOVER-5.0
+- Cite: https://doi.org/10.5281/zenodo.16912657
 
 ## 📈 What I've Tried to Do Right
 
@@ -293,7 +317,7 @@ I'm looking for feedback from researchers who know more about consciousness than
 ## 🎯 For Researchers
 
 If you're willing to take a look, here's what might be useful:
-1. **Quick test**: Run `python overnight_full_run.py --out ./test --n_reps 10` (5 minutes)
+1. **Quick test**: Run `python overnight_full_run.py --out ./test --n_mask 60 --n_blink 40 --n_cb 32 --n_dual 40 --boots 300` (≈5 minutes)
 2. **Main results**: The threshold detection around connectivity values of 4-6
 3. **Code review**: All methods are documented and type-hinted
 4. **Statistical approach**: Bootstrap confidence intervals and breakpoint detection

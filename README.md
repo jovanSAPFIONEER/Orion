@@ -250,7 +250,7 @@ Alternatively, use the external one-command replication kit (cross-platform, wit
 
 If you use the reproduction kit or its outputs, please cite:
 
-DISCOVER 5.0 — Reproduction Kit for Causal Rewire Recovery (SOA‑1). Version v0.1.1. DOI: https://doi.org/10.5281/zenodo.16912657
+DISCOVER 5.0 — Reproduction Kit for Causal Rewire Recovery (SOA‑1). Version v0.1.2. DOI: https://doi.org/10.5281/zenodo.16912657
 
 ## 📈 What I've Tried to Do Right
 

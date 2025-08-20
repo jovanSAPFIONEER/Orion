@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
 
-> Replication and citation: One-command external kit at https://github.com/jovanSAPFIONEER/DISCOVER-5.0 — DOI: https://doi.org/10.5281/zenodo.16912657
+> Replication and citation: One-command external kit at https://github.com/jovanSAPFIONEER/DISCOVER-5.0 — DOI: https://doi.org/10.5281/zenodo.16912656
 
 ## About This Project
 
@@ -250,7 +250,7 @@ Alternatively, use the external one-command replication kit (cross-platform, wit
 
 If you use the reproduction kit or its outputs, please cite:
 
-DISCOVER 5.0 — Reproduction Kit for Causal Rewire Recovery (SOA‑1). Version v0.1.2. DOI: https://doi.org/10.5281/zenodo.16912657
+DISCOVER 5.0 — Reproduction Kit for Causal Rewire Recovery (SOA‑1). Version v0.1.2. DOI: https://doi.org/10.5281/zenodo.16912656
 
 ## 📈 What I've Tried to Do Right
 
